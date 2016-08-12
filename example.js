@@ -5,9 +5,9 @@ fs = require('fs');
 
 fixture = fs.readFileSync('./spec/javascripts/fixture/response.html', "utf8");
 
-result  = resolver.resolve_to_jquery(fixture, '.productLister li');
+var $ = cheerio.load(fixture);
 
 
-result.nextAll().each(function(index, element){
-  console.log(element);
-});
+var result  = resolver.extract_list($, '.productInfo');
+
+console.log(result);
