@@ -1,16 +1,28 @@
-// include gulp
 var gulp = require('gulp');
 
-// include plug-ins
 var jshint = require('gulp-jshint');
+var beautify = require('gulp-beautify');
+var jslint = require('gulp-jslint');
+var stylish = require('jshint-stylish');
 
-// JS hint task
+gulp.task('beautify', function() {
+  gulp.src('./lib/*.js')
+    .pipe(beautify({indentSize: 2}))
+    .pipe(gulp.dest('./lib/'))
+});
+
+gulp.task('jslint', function () {
+    return gulp.src(['./lib/*.js'])
+            .pipe(jslint({ }))
+            .pipe(jshint.reporter(stylish))
+});
+
 gulp.task('jshint', function() {
   gulp.src('./lib/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
-// default gulp task
-gulp.task('default', ['jshint'], function() {
+
+gulp.task('default', ['beautify', 'jslint', 'jshint'], function() {
 });
