@@ -23,5 +23,10 @@
     "nock": "^8.0.0",
     "request": "^2.74.0",
     "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2"
   }
 }
