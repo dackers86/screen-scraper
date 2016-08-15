@@ -4,6 +4,7 @@ var jshint = require('gulp-jshint');
 var beautify = require('gulp-beautify');
 var jslint = require('gulp-jslint');
 var stylish = require('jshint-stylish');
+var jasmine = require('gulp-jasmine');
 
 gulp.task('beautify', function() {
   gulp.src('./lib/*.js')
@@ -23,6 +24,11 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('default'));
 });
 
+gulp.task('jasmine', () =>
+    gulp.src('spec/*.js')
+        .pipe(jasmine())
+);
 
-gulp.task('default', ['beautify', 'jslint', 'jshint'], function() {
+
+gulp.task('default', ['beautify', 'jslint', 'jshint', 'jasmine'], function() {
 });
