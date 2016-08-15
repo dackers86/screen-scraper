@@ -1,14 +1,18 @@
-scraper = require('./../lib/scraper.js')
+var nock = require('nock');
+var request = require ('request');
+var scraper = require('./../lib/scraper.js');
+var fs = require('fs');
 
 describe("Running the program", function() {
 
   it("will return a valid json result", function() {
 
-  	var example = nock('http://example.com')
-                .get('/foo')
-                .reply(200, { foo: 'bar' });
+    fixture = fs.readFileSync('./spec/javascripts/fixture/response.html', 'utf8');
 
-                
+    nock('http://hiring-tests.s3-website-eu-west-1.amazonaws.com')
+                    .get('/2015_Developer_Scrape/5_products.html')
+                    .reply(200, { fixture });
+
     expected_result = {
 		"results":[
 			{
