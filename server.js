@@ -6,7 +6,8 @@ var stdin = process.openStdin();
 process.stdin.setRawMode
 process.stdin.resume();
 
+console.log("press any key to conutine...");
+
 process.stdin.on('data', function() {
-    console.log("press any key to conutine...");
     scraper.scrape();
 });
